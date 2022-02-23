@@ -2,15 +2,14 @@ from django.contrib import admin
 from django.urls import path
 from hospital import views
 from django.contrib.auth.views import LoginView,LogoutView
-from django.conf.urls.static import static
-from django.conf import settings
+
 
 #-------------FOR ADMIN RELATED URLS
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home_view,name=''),
 
-    
+
     path('aboutus', views.aboutus_view),
     path('contactus', views.contactus_view),
 
@@ -32,7 +31,7 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='hospital/index.html'),name='logout'),
 
 
-    path('admin', views.admin_dashboard_view,name='admin-dashboard'),
+    path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
 
     path('admin-doctor', views.admin_doctor_view,name='admin-doctor'),
     path('admin-view-doctor', views.admin_view_doctor_view,name='admin-view-doctor'),
@@ -62,9 +61,9 @@ urlpatterns = [
     path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
     path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
-    path('approve-appointment/<str:pk>', views.approve_appointment_view,name='approve-appointment'),
-    path('reject-appointment/<str:pk>', views.reject_appointment_view,name='reject-appointment'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('approve-appointment/<int:pk>', views.approve_appointment_view,name='approve-appointment'),
+    path('reject-appointment/<int:pk>', views.reject_appointment_view,name='reject-appointment'),
+]
 
 
 #---------FOR DOCTOR RELATED URLS-------------------------------------
@@ -78,8 +77,9 @@ urlpatterns +=[
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
-    path('delete-appointment/<str:pk>', views.delete_appointment_view,name='delete-appointment'),
-] 
+    path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
+]
+
 
 
 
@@ -92,7 +92,7 @@ urlpatterns +=[
     path('patient-view-appointment', views.patient_view_appointment_view,name='patient-view-appointment'),
     path('patient-discharge', views.patient_discharge_view,name='patient-discharge'),
 
-] 
+]
 
 #Developed By : sumit kumar
 #facebook : fb.com/sumit.luv
