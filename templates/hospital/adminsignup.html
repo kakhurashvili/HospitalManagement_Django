@@ -69,15 +69,19 @@
         <div class="note">
           <p>Add New Admin To Hospital</p>
         </div>
-
+        {% if messages %}
+            {% for message in messages %}
+            <p id="messages">{{message}}</p>
+            {% endfor %}
+        {% endif %}
         <div class="form-content">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 {% render_field form.first_name class="form-control" placeholder="First Name" %}
               </div>
-              <div class="form-group">
-                {% render_field form.email class="form-control" placeholder="email" %}
+             <!-- <div class="form-group">
+                {% render_field form.email class="form-control" placeholder="email" %}-->
               <div class="form-group">
                 {% render_field form.username class="form-control" placeholder="Username" %}
               </div>

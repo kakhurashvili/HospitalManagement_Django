@@ -8,7 +8,7 @@ from . import models
 class AdminSigupForm(forms.ModelForm):
     class Meta:
         model=User
-        fields=['first_name','email','last_name','username','password']
+        fields=['first_name','last_name','username','password']
         widgets = {
         'password': forms.PasswordInput()
         }

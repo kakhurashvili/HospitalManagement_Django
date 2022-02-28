@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from datetime import datetime,timedelta,date
 from django.conf import settings
 from .models import Patient
+from django.contrib import messages
 import json
 # Create your views here.
 def home_view(request):
@@ -47,9 +48,11 @@ def admin_signup_view(request):
             user=form.save()
             user.set_password(user.password)
             user.save()
+            messages.success(request, "Registration successful." )
             my_admin_group = Group.objects.get_or_create(name='ADMIN')
             my_admin_group[0].user_set.add(user)
             return HttpResponseRedirect('adminlogin')
+        messages.error(request, "Unsuccessful registration. Invalid information.")
     return render(request,'hospital/adminsignup.html',{'form':form})
 
 
