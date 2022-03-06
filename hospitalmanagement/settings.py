@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django_auto_logout.middleware.auto_logout',
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 ROOT_URLCONF = 'hospitalmanagement.urls'
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -129,6 +131,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'static')
 
 
 LOGIN_REDIRECT_URL='/afterlogin'
+LOGOUT_REDIRECT_URL='/adminlogin'
 
 #for contact us give your gmail id and password
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
@@ -149,6 +152,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+from datetime import timedelta
 
+AUTO_LOGOUT = {
+    'IDLE_TIME': timedelta(minutes=1),
+    'SESSION_TIME': timedelta(minutes=5),
+    'MESSAGE': 'ვიზიტის დრო ამოიწურა!',
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': False,
+}
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
