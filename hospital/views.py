@@ -115,7 +115,7 @@ def is_patient(user):
 #---------AFTER ENTERING CREDENTIALS WE CHECK WHETHER USERNAME AND PASSWORD IS OF ADMIN,DOCTOR OR PATIENT
 def afterlogin_view(request):
     if is_admin(request.user):
-        return redirect(reverse('admin-dashboard'))
+        return redirect('admin-dashboard')
     elif is_doctor(request.user):
         accountapproval=models.Doctor.objects.all().filter(user_id=request.user.id,status=True)
         if accountapproval:
