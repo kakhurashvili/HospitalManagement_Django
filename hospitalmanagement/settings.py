@@ -155,8 +155,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from datetime import timedelta
 
 AUTO_LOGOUT = {
-    'IDLE_TIME': timedelta(minutes=1),
-    'SESSION_TIME': timedelta(minutes=5),
+    'SESSION_TIME': timedelta(minutes=1),
     'MESSAGE': 'ვიზიტის დრო ამოიწურა!',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': False,
 }
