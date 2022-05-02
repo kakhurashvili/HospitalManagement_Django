@@ -130,8 +130,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'static')
 
 
 
-LOGIN_REDIRECT_URL='/afterlogin'
-LOGOUT_REDIRECT_URL='/adminlogin'
+
 
 #for contact us give your gmail id and password
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
@@ -153,12 +152,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 from datetime import timedelta
+from django.urls import reverse_lazy
+
+
+LOGIN_URL = '/adminlogin'
+#LOGIN_REDIRECT_URL= reverse_lazy('/adminlogin')
+LOGIN_REDIRECT_URL= '/afterlogin'
+LOGOUT_REDIRECT_URL='/adminlogin'
+#LOGOUT_REDIRECT_URL = reverse_lazy('adminlogin')
+
 
 AUTO_LOGOUT = {
-    #'IDLE_TIME': timedelta(minutes=1),
+    #'IDLE_TIME': timedelta(minutes=0.5),
     'SESSION_TIME': timedelta(minutes=30),
     'MESSAGE': 'ვიზიტის დრო ამოიწურა!',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': False,
 }
+
+
+
+SESSION_COOKIE_AGE = 3600
+SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+SESSION_EXPIRE_SECONDS = 10  
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
